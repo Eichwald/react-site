@@ -1,6 +1,5 @@
 import React, {Component}  from 'react'
-
-const fetchPostsUrl = 'https://jsonplaceholder.typicode.com/posts';
+import Grid from '@material-ui/core/Grid';
 
 class fetchedPosts extends Component {
     constructor(props) {
@@ -8,7 +7,7 @@ class fetchedPosts extends Component {
         this.state = {
             error : null,
             isFetching: false,
-            posts: []
+            posts: [],
         };
     }
 
@@ -23,18 +22,19 @@ class fetchedPosts extends Component {
         }else{
             return(
                 <div>
-                    <ol>
+                    <Grid contianer spacing={3}>
                     {
                         posts.slice(0,10).map(post => (
-                            <li key={post.id} align="start">
+                            <Grid item xs={12} key={post.id} align="start">
                                 <div>
+                                    <p>{post.id}</p>
                                     <p>{post.title}</p>
                                     <p>{post.body}</p>
                                 </div>
-                            </li>
+                            </Grid>
                         ))
                     }
-                    </ol>
+                    </Grid>
                 </div>
             );
         }    
@@ -47,11 +47,11 @@ class fetchedPosts extends Component {
 
     fetchPostsFromAPI = () => {
         this.setState({...this.state, isFetching: true});
-        fetch(fetchPostsUrl)
+        fetch(this.props.url)
             .then(response => response.json())
             .then(result => {
                 this.setState({posts: result, isFetching: false})
-            console.log(result)
+                console.log(result)
             })
             .catch(e => {
                 console.log(e);

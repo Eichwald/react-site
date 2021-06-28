@@ -1,10 +1,9 @@
 import './App.css';
 import React, { Fragment } from "react";
-import ReactDOM from 'react-dom';
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
-import PostsTab from './tabs/PostsTab.js'
-
+import FetchTab from './tabs/PostsTab.js';
+import '@fontsource/roboto';
 import {
   BrowserRouter as Router,
   Switch,
@@ -23,12 +22,12 @@ function App() {
           render={({ location }) => (
             <Fragment>
               <Tabs value={location.pathname}>
-                <Tab label="Item One" value="/" component={Link} to={allTabs[0]} />
-                <Tab label="Item Two" value="/albums" component={Link} to={allTabs[1]} />
+                <Tab label="Posts" value="/" component={Link} to={allTabs[0]} />
+                <Tab label="Albums" value="/albums" component={Link} to={allTabs[1]} />
               </Tabs>
               <Switch>
-                <Route path={allTabs[1]} render={() => <div>Tab 2</div>} />
-                <Route path={allTabs[0]} render={() => <PostsTab/>} />
+                <Route path={allTabs[1]} component={AlbumsTab}/>
+                <Route path={allTabs[0]} component={PostsTab}/>
               </Switch>
             </Fragment>
           )}
@@ -37,6 +36,14 @@ function App() {
     </Router>
   );
 }
+
+function PostsTab() {
+  return <FetchTab url = 'https://jsonplaceholder.typicode.com/posts'/>;
+}
+function AlbumsTab() {
+  return <FetchTab url = 'https://jsonplaceholder.typicode.com/albums'/>;
+}
+
 
 export default App;
 
