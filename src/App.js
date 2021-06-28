@@ -3,12 +3,14 @@ import React, { Fragment } from "react";
 import ReactDOM from 'react-dom';
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
+import PostsTab from './tabs/PostsTab.js'
+
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Link
-} from "react-router-dom";
+} from "react-router-dom";  
 
 function App() {
   const allTabs = ['/', '/albums'];
@@ -26,7 +28,7 @@ function App() {
               </Tabs>
               <Switch>
                 <Route path={allTabs[1]} render={() => <div>Tab 2</div>} />
-                <Route path={allTabs[0]} render={() => <div>Tab 1</div>} />
+                <Route path={allTabs[0]} render={() => <PostsTab/>} />
               </Switch>
             </Fragment>
           )}
