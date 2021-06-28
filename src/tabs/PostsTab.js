@@ -1,7 +1,6 @@
 import React, {Component}  from 'react'
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
-import { makeStyles } from '@material-ui/core/styles';
 
 class fetchedPosts extends Component {
     constructor(props) {
@@ -16,8 +15,6 @@ class fetchedPosts extends Component {
 
     render() {
         const {error, isFetching, posts} = this.state;
-
-        
 
         if(error){
             return <div>Error in loading</div>
