@@ -21,7 +21,7 @@ function App() {
           path="/"
           render={({ location }) => (
             <Fragment>
-              <Tabs value={location.pathname}>
+              <Tabs value={location.pathname} centered>
                 <Tab label="Posts" value="/" component={Link} to={allTabs[0]} />
                 <Tab label="Albums" value="/albums" component={Link} to={allTabs[1]} />
               </Tabs>

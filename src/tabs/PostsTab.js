@@ -1,5 +1,7 @@
 import React, {Component}  from 'react'
 import Grid from '@material-ui/core/Grid';
+import Card from '@material-ui/core/Card';
+import { makeStyles } from '@material-ui/core/styles';
 
 class fetchedPosts extends Component {
     constructor(props) {
@@ -15,6 +17,8 @@ class fetchedPosts extends Component {
     render() {
         const {error, isFetching, posts} = this.state;
 
+        
+
         if(error){
             return <div>Error in loading</div>
         }else if (isFetching) {
@@ -22,16 +26,16 @@ class fetchedPosts extends Component {
         }else{
             return(
                 <div>
-                    <Grid contianer spacing={3}>
+                    <Grid contianer spacing={10} margin={10}>
                     {
                         posts.slice(0,10).map(post => (
-                            <Grid item xs={12} key={post.id} align="start">
+                            <Card item xs={12}>
                                 <div>
                                     <p>{post.id}</p>
                                     <p>{post.title}</p>
                                     <p>{post.body}</p>
                                 </div>
-                            </Grid>
+                            </Card>
                         ))
                     }
                     </Grid>
@@ -39,7 +43,6 @@ class fetchedPosts extends Component {
             );
         }    
     }
-
 
     componentDidMount() {
         this.fetchPosts();
